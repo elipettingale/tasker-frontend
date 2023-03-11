@@ -11,7 +11,11 @@ import { clone } from "../../functions/helpers";
 
 interface KanbanProps {}
 
-const initial = {
+type ColumnsType = {
+  [key: string]: ColumnType;
+};
+
+const initial: ColumnsType = {
   "1": {
     id: "1",
     name: "Todo",
