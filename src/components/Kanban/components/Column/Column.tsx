@@ -21,7 +21,11 @@ const Column: FunctionComponent<ColumnProps> = ({
 }) => {
   return (
     <div>
-      <div className={styles.Header}>
+      <div
+        className={BEM(styles, "Header", {
+          isEmpty: tasks.length === 0,
+        })}
+      >
         <span className={styles.Name}>
           {name} <Badge color={color}>{tasks.length}</Badge>
         </span>
@@ -35,7 +39,7 @@ const Column: FunctionComponent<ColumnProps> = ({
           {(provided, snapshot) => (
             <div
               ref={provided.innerRef}
-              className={BEM(styles, "List", {
+              className={BEM(styles, "Column", {
                 isDraggingOver: snapshot.isDraggingOver,
               })}
             >

@@ -1,5 +1,5 @@
 export function BEM(styles: any, root: string, modifiers: object) {
-  let className = styles[root];
+  let className = styles[root] ?? "";
 
   Object.entries(modifiers).forEach(([modifier, shouldApply]) => {
     if (!shouldApply) return;
