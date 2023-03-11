@@ -1,0 +1,29 @@
+.Task {
+  background-color: var(--dark-2);
+  padding: 1rem;
+  border-radius: 0.75rem;
+  cursor: grab;
+}
+
+.Task:hover {
+  background-color: var(--dark-3);
+}
+
+.Badges {
+  font-size: 0.8em;
+  margin-bottom: 1rem;
+}
+
+.Badges > *:first-child {
+  margin-left: 0;
+}
+
+.Title {
+  margin: 0 0 0.5rem 0;
+}
+
+.Description {
+  margin: 0;
+  font-size: 0.85em;
+  color: var(--light-2);
+}

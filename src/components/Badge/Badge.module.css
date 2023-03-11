@@ -1,0 +1,6 @@
+.Badge {
+  background-color: var(--dark-4);
+  padding: 0.4em 0.9em;
+  border-radius: 1em;
+  margin: 0 0.3em;
+}
