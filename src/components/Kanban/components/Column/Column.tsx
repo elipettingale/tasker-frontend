@@ -1,4 +1,4 @@
-import { FunctionComponent, ReactNode } from "react";
+import { FunctionComponent } from "react";
 import { Droppable } from "react-beautiful-dnd";
 import { BEM } from "../../../../functions/helpers";
 import Badge from "../../../Badge/Badge";
