@@ -21,11 +21,7 @@ const Column: FunctionComponent<ColumnProps> = ({
 }) => {
   return (
     <div>
-      <div
-        className={BEM(styles, "Header", {
-          isEmpty: tasks.length === 0,
-        })}
-      >
+      <div className={styles.Header}>
         <span className={styles.Name}>
           {name} <Badge color={color}>{tasks.length}</Badge>
         </span>

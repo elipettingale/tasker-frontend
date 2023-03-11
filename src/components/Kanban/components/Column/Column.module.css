@@ -3,11 +3,6 @@
   padding: 0.8rem 1rem;
   border-radius: 0.75rem;
   position: relative;
-  transition: opacity 200ms ease-in-out;
-}
-
-.Header--isEmpty {
-  opacity: 0.5;
 }
 
 .Underline {
