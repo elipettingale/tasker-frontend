@@ -1,34 +1,57 @@
 import { FunctionComponent, ReactNode } from "react";
+import { Droppable } from "react-beautiful-dnd";
+import { BEM } from "../../../../functions/helpers";
 import Badge from "../../../Badge/Badge";
+import Task, { TaskType } from "../Task/Task";
 import styles from "./Column.module.css";
 
 interface ColumnProps {
-  name: string;
-  color: `#${string}`;
-  total: number;
-  children: ReactNode;
+  column: ColumnType;
 }
 
+export type ColumnType = {
+  id: string;
+  name: string;
+  color: `#${string}`;
+  tasks: TaskType[];
+};
+
 const Column: FunctionComponent<ColumnProps> = ({
-  name,
-  color,
-  total,
-  children,
+  column: { id, name, color, tasks },
 }) => {
   return (
     <div>
       <div className={styles.Header}>
         <span className={styles.Name}>
-          {name} <Badge color={color}>{total}</Badge>
+          {name} <Badge color={color}>{tasks.length}</Badge>
         </span>
         <span
           className={styles.Underline}
           style={{ borderColor: color }}
         ></span>
       </div>
-      <div className={styles.Content}>{children}</div>
+      <div className={styles.Content}>
+        <Droppable droppableId={id}>
+          {(provided, snapshot) => (
+            <div
+              ref={provided.innerRef}
+              className={BEM(styles, "List", {
+                isDraggingOver: snapshot.isDraggingOver,
+              })}
+            >
+              {tasks.map((task, index) => (
+                <Task key={task.id} index={index} task={task} />
+              ))}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+      </div>
     </div>
   );
 };
+
+// todo: merge List.tsx into column
+// todo: deke
 
 export default Column;

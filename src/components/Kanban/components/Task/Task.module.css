@@ -3,6 +3,12 @@
   padding: 1rem;
   border-radius: 0.75rem;
   cursor: grab;
+  user-select: none;
+  margin-bottom: 1rem;
+}
+
+.Task--isDragging {
+  opacity: 0.75;
 }
 
 .Task:hover {
