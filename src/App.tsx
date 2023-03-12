@@ -1,21 +1,19 @@
-import styles from "./App.module.css";
-import Breadcrumb from "./components/Breadcrumb/Breadcrumb";
-import Icon from "./components/Icon/Icon";
-import Kanban from "./components/Kanban/Kanban";
+import { Route, Routes } from "react-router-dom";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import Projects from "./pages/Projects/Projects";
+import Project from "./pages/Project/Project";
+import NotFound from "./pages/NotFound/NotFound";
 
 function App() {
   return (
-    <div>
-      <div>
-        <h1>Lorem Ipsum</h1>
-        <div className={styles.Breadcrumbs}>
-          <Breadcrumb>Projects</Breadcrumb>
-          <Icon name="chevron-right" />
-          <Breadcrumb>Lorem Ipsum</Breadcrumb>
-        </div>
-      </div>
-      <Kanban />
-    </div>
+    <Routes>
+      <Route path="/" element={<Dashboard />} />
+      <Route path="/projects">
+        <Route index element={<Projects />} />
+        <Route path=":id" element={<Project />} />
+      </Route>
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
 }
 

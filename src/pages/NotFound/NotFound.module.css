@@ -1,0 +1,16 @@
+.NotFound {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Title {
+  font-size: 8rem;
+  margin: 0 0 1rem 0;
+}
+
+.Description {
+  margin: 0;
+}
