@@ -20,6 +20,7 @@ const Breadcrumbs: FunctionComponent<BreadcrumbsProps> = ({ children }) => {
     <nav className={styles.Breadcrumbs}>
       {Children.map(breadcrumbs, (child: ReactElement, index) => {
         const isLastBreadcrumb = index === breadcrumbs.length - 1;
+
         if (isLastBreadcrumb)
           return cloneElement(child, { className: styles.Breadcrumb });
 

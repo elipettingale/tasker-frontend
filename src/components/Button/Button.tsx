@@ -1,12 +1,18 @@
-import { FunctionComponent, ReactNode } from "react";
+import { ComponentPropsWithoutRef, FunctionComponent } from "react";
 import styles from "./Button.module.css";
 
-interface ButtonProps {
-  children: ReactNode;
-}
+interface ButtonProps extends ComponentPropsWithoutRef<"button"> {}
 
-const Button: FunctionComponent<ButtonProps> = ({ children }) => {
-  return <div className={styles.Button}>{children}</div>;
+const Button: FunctionComponent<ButtonProps> = ({
+  className,
+  children,
+  ...rest
+}) => {
+  return (
+    <button className={`${className}  ${styles.Button}`} {...rest}>
+      {children}
+    </button>
+  );
 };
 
 export default Button;

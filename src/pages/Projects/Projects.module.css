@@ -1,0 +1,16 @@
+.Projects {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.Project {
+  background-color: var(--dark-2);
+  padding: 2rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.Project:hover {
+  background-color: var(--dark-3);
+}

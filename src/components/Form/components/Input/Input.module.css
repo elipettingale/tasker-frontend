@@ -1,0 +1,18 @@
+.Input {
+  background-color: transparent;
+  border: 2px solid var(--dark-4);
+  padding: 1em;
+  border-radius: 0.5em;
+  color: var(--light-1);
+  width: 100%;
+  font-size: 1em;
+}
+
+.Input:focus {
+  outline: none;
+  border-color: var(--primary-1);
+}
+
+.Input:disabled {
+  opacity: 0.25;
+}

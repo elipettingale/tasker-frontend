@@ -1,11 +1,20 @@
 import { FunctionComponent } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import styles from "./Projects.module.css";
 
 interface ProjectsProps {}
 
 const Projects: FunctionComponent<ProjectsProps> = () => {
+  const navigate = useNavigate();
+
+  const projects = [
+    {
+      id: "1",
+      name: "Lorem Ipsum",
+    },
+  ];
+
   return (
     <div>
       <div>
@@ -14,7 +23,16 @@ const Projects: FunctionComponent<ProjectsProps> = () => {
           <Link to="/projects">Projects</Link>
         </Breadcrumbs>
       </div>
-      <div></div>
+      <div className={styles.Projects}>
+        {projects.map((project) => (
+          <div
+            className={styles.Project}
+            onClick={() => navigate(`/projects/${project.id}`)}
+          >
+            <h2>{project.name}</h2>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

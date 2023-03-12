@@ -1,7 +1,7 @@
 .Header {
   background-color: var(--dark-2);
   padding: 0.8rem 1rem;
-  border-radius: 0.75rem;
+  border-radius: 0.5rem;
   position: relative;
 }
 
@@ -9,8 +9,8 @@
   border-bottom: 2px solid var(--dark-4);
   position: absolute;
   bottom: 0rem;
-  left: 0.75rem;
-  width: calc(100% - 1.5rem);
+  left: 1rem;
+  width: calc(100% - 2em);
 }
 
 .Name {

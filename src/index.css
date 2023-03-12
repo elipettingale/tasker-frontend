@@ -1,12 +1,14 @@
 :root {
   --dark-1: #17181f;
-  --dark-2: #272833;
+  --dark-2: #20212c;
   --dark-3: #2d2e39;
   --dark-4: #3b3c47;
   --light-1: #ffffff;
   --light-2: #b0b0b0;
-  --primary-1: #3772ff;
-  --primary-2: #3b40e4;
+  --light-3: #888888;
+
+  --primary-1: #3b40e4;
+  --primary-2: #3772ff;
 }
 
 :root {
@@ -22,6 +24,10 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 #root {
