@@ -1,15 +1,18 @@
 import styles from "./App.module.css";
-import Badge from "./components/Badge/Badge";
+import Breadcrumb from "./components/Breadcrumb/Breadcrumb";
+import Icon from "./components/Icon/Icon";
 import Kanban from "./components/Kanban/Kanban";
 
 function App() {
   return (
     <div>
       <div>
-        <h1>Hello, Elliot &#128075;</h1>
-        <p>
-          You have <Badge color="#e15abe">15 tasks</Badge> to complete!
-        </p>
+        <h1>Lorem Ipsum</h1>
+        <div className={styles.Breadcrumbs}>
+          <Breadcrumb>Projects</Breadcrumb>
+          <Icon name="chevron-right" />
+          <Breadcrumb>Lorem Ipsum</Breadcrumb>
+        </div>
       </div>
       <Kanban />
     </div>

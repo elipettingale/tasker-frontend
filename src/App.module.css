@@ -1,0 +1,8 @@
+.Breadcrumbs {
+  display: flex;
+  align-items: center;
+}
+
+.Breadcrumbs > * {
+  margin-right: 0.5rem;
+}

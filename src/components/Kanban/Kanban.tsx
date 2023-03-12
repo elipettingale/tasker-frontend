@@ -8,6 +8,7 @@ import {
 } from "react-beautiful-dnd";
 import styles from "./Kanban.module.css";
 import { clone } from "../../functions/helpers";
+import Icon from "../Icon/Icon";
 
 interface KanbanProps {}
 
@@ -114,7 +115,9 @@ const Kanban: FunctionComponent<KanbanProps> = () => {
   return (
     <div>
       <div className={styles.Toolbar}>
-        <Button>New Task</Button>
+        <Button>
+          New Task <Icon name="plus" />
+        </Button>
       </div>
       <div className={styles.Columns}>
         <DragDropContext onDragEnd={onDragEnd}>

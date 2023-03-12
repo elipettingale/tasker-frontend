@@ -1,0 +1,12 @@
+.Breadcrumb {
+  background-color: var(--dark-2);
+  color: var(--light-1);
+  padding: 0.3em 1.2em;
+  border-radius: 0.75em;
+  cursor: pointer;
+  position: relative;
+}
+
+.Breadcrumb:hover {
+  background-color: var(--dark-3);
+}
