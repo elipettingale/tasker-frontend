@@ -1,6 +1,6 @@
 import { FunctionComponent, useState } from "react";
 import Button from "../Button/Button";
-import Column, { ColumnType } from "./components/Column/Column";
+import List, { ListType } from "./components/List/List";
 import {
   DragDropContext,
   DraggableLocation,
@@ -12,11 +12,11 @@ import Icon from "../Icon/Icon";
 
 interface KanbanProps {}
 
-type ColumnsType = {
-  [key: string]: ColumnType;
+type ListsType = {
+  [key: string]: ListType;
 };
 
-const initial: ColumnsType = {
+const initial: ListsType = {
   "1": {
     id: "1",
     name: "Todo",
@@ -68,36 +68,36 @@ const initial: ColumnsType = {
 };
 
 const Kanban: FunctionComponent<KanbanProps> = () => {
-  const [columns, setColumns] = useState(initial);
+  const [lists, setLists] = useState(initial);
 
-  const moveWithinColumn = (
+  const moveWithinList = (
     source: DraggableLocation,
     destination: DraggableLocation
   ) => {
-    let columnClone = clone(columns[source.droppableId]);
-    const [removedItem] = columnClone.tasks.splice(source.index, 1);
-    columnClone.tasks.splice(destination.index, 0, removedItem);
+    let listClone = clone(lists[source.droppableId]);
+    const [removedItem] = listClone.tasks.splice(source.index, 1);
+    listClone.tasks.splice(destination.index, 0, removedItem);
 
-    setColumns((previous) => {
-      return { ...previous, [source.droppableId]: columnClone };
+    setLists((previous) => {
+      return { ...previous, [source.droppableId]: listClone };
     });
   };
 
-  const moveToAnotherColumn = (
+  const moveToAnotherList = (
     source: DraggableLocation,
     destination: DraggableLocation
   ) => {
-    const sourceColumnClone = clone(columns[source.droppableId]);
-    const destinationColumnClone = clone(columns[destination.droppableId]);
+    const sourceListClone = clone(lists[source.droppableId]);
+    const destinationListClone = clone(lists[destination.droppableId]);
 
-    const [removedItem] = sourceColumnClone.tasks.splice(source.index, 1);
-    destinationColumnClone.tasks.splice(destination.index, 0, removedItem);
+    const [removedItem] = sourceListClone.tasks.splice(source.index, 1);
+    destinationListClone.tasks.splice(destination.index, 0, removedItem);
 
-    setColumns((previous) => {
+    setLists((previous) => {
       return {
         ...previous,
-        [source.droppableId]: sourceColumnClone,
-        [destination.droppableId]: destinationColumnClone,
+        [source.droppableId]: sourceListClone,
+        [destination.droppableId]: destinationListClone,
       };
     });
   };
@@ -106,9 +106,9 @@ const Kanban: FunctionComponent<KanbanProps> = () => {
     if (!destination) return;
 
     if (source.droppableId === destination.droppableId) {
-      moveWithinColumn(source, destination);
+      moveWithinList(source, destination);
     } else {
-      moveToAnotherColumn(source, destination);
+      moveToAnotherList(source, destination);
     }
   };
 
@@ -119,12 +119,12 @@ const Kanban: FunctionComponent<KanbanProps> = () => {
           New Task <Icon name="plus" />
         </Button>
       </div>
-      <div className={styles.Columns}>
+      <div className={styles.Lists}>
         <DragDropContext onDragEnd={onDragEnd}>
-          <Column column={columns["1"]} />
-          <Column column={columns["2"]} />
-          <Column column={columns["3"]} />
-          <Column column={columns["4"]} />
+          <List list={lists["1"]} />
+          <List list={lists["2"]} />
+          <List list={lists["3"]} />
+          <List list={lists["4"]} />
         </DragDropContext>
       </div>
     </div>

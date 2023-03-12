@@ -23,6 +23,6 @@
   margin: 1rem 0;
 }
 
-.Column--isDraggingOver {
+.List--isDraggingOver {
   outline: 2px dashed var(--dark-2);
 }

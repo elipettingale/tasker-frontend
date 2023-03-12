@@ -8,11 +8,11 @@
   margin-left: 1rem;
 }
 
-.Columns {
+.Lists {
   display: flex;
   gap: 1.5rem;
 }
 
-.Columns > * {
+.Lists > * {
   flex: 1;
 }

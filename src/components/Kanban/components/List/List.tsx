@@ -3,21 +3,21 @@ import { Droppable } from "react-beautiful-dnd";
 import { BEM } from "../../../../functions/helpers";
 import Badge from "../../../Badge/Badge";
 import Task, { TaskType } from "../Task/Task";
-import styles from "./Column.module.css";
+import styles from "./List.module.css";
 
-interface ColumnProps {
-  column: ColumnType;
+interface ListProps {
+  list: ListType;
 }
 
-export type ColumnType = {
+export type ListType = {
   id: string;
   name: string;
   color: `#${string}`;
   tasks: TaskType[];
 };
 
-const Column: FunctionComponent<ColumnProps> = ({
-  column: { id, name, color, tasks },
+const List: FunctionComponent<ListProps> = ({
+  list: { id, name, color, tasks },
 }) => {
   return (
     <div>
@@ -35,7 +35,7 @@ const Column: FunctionComponent<ColumnProps> = ({
           {(provided, snapshot) => (
             <div
               ref={provided.innerRef}
-              className={BEM(styles, "Column", {
+              className={BEM(styles, "List", {
                 isDraggingOver: snapshot.isDraggingOver,
               })}
             >
@@ -51,7 +51,4 @@ const Column: FunctionComponent<ColumnProps> = ({
   );
 };
 
-// todo: merge List.tsx into column
-// todo: deke
-
-export default Column;
+export default List;
