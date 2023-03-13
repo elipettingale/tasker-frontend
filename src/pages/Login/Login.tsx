@@ -46,6 +46,7 @@ const Login: FunctionComponent<LoginProps> = () => {
           Login
         </Button>
       </Form>
+
       <div className={styles.Subtext}>
         Don't have an account? <br />
         Register <Link to="/register">here</Link>.

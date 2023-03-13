@@ -53,6 +53,7 @@ const Register: FunctionComponent<RegisterProps> = () => {
           Register
         </Button>
       </Form>
+
       <div className={styles.Subtext}>
         Already have an account? <br />
         Login <Link to="/login">here</Link>.
