@@ -25,15 +25,8 @@ const Form: FunctionComponent<FormProps> = ({
 }) => {
   const handleOnSubmit = (event: SyntheticEvent) => {
     event.preventDefault();
-
-    let data: { [key: string]: FormDataEntryValue } = {};
-    const form = event.target as HTMLFormElement;
-
-    for (var [key, value] of new FormData(form).entries()) {
-      data[key] = value;
-    }
-
-    onSubmit(data);
+    const formData = getFormData(event.target as HTMLFormElement);
+    onSubmit(formData);
   };
 
   return (
@@ -44,5 +37,15 @@ const Form: FunctionComponent<FormProps> = ({
     </form>
   );
 };
+
+function getFormData(form: HTMLFormElement) {
+  let data: { [key: string]: FormDataEntryValue } = {};
+
+  for (var [key, value] of new FormData(form).entries()) {
+    data[key] = value;
+  }
+
+  return data;
+}
 
 export default Form;
