@@ -7,7 +7,7 @@ import {
   DropResult,
 } from "react-beautiful-dnd";
 import styles from "./Kanban.module.css";
-import { clone } from "../../functions/helpers";
+import { clone } from "../../includes/helpers";
 import Icon from "../Icon/Icon";
 
 interface KanbanProps {}

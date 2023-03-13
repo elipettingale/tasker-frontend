@@ -1,24 +1,33 @@
-import { FunctionComponent, ReactNode, SyntheticEvent } from "react";
+import {
+  createContext,
+  FunctionComponent,
+  ReactNode,
+  SyntheticEvent,
+} from "react";
 import styles from "./Form.module.css";
 
 interface FormProps {
   onSubmit: (data: {}) => void;
+  errors: {};
   className?: string;
   disabled?: boolean;
   children: ReactNode;
 }
 
+export const FormContext = createContext({});
+
 const Form: FunctionComponent<FormProps> = ({
   onSubmit,
+  errors,
   className,
   disabled,
   children,
 }) => {
   const handleOnSubmit = (event: SyntheticEvent) => {
     event.preventDefault();
-    const form = event.target as HTMLFormElement;
 
     let data: { [key: string]: FormDataEntryValue } = {};
+    const form = event.target as HTMLFormElement;
 
     for (var [key, value] of new FormData(form).entries()) {
       data[key] = value;
@@ -29,7 +38,9 @@ const Form: FunctionComponent<FormProps> = ({
 
   return (
     <form className={`${className}  ${styles.Form}`} onSubmit={handleOnSubmit}>
-      <fieldset disabled={disabled}>{children}</fieldset>
+      <FormContext.Provider value={errors}>
+        <fieldset disabled={disabled}>{children}</fieldset>
+      </FormContext.Provider>
     </form>
   );
 };

@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 import { Draggable } from "react-beautiful-dnd";
-import { BEM } from "../../../../functions/helpers";
+import { BEM } from "../../../../includes/helpers";
 import Badge from "../../../Badge/Badge";
 import styles from "./Task.module.css";
 

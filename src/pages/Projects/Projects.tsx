@@ -26,6 +26,7 @@ const Projects: FunctionComponent<ProjectsProps> = () => {
       <div className={styles.Projects}>
         {projects.map((project) => (
           <div
+            key={project.id}
             className={styles.Project}
             onClick={() => navigate(`/projects/${project.id}`)}
           >

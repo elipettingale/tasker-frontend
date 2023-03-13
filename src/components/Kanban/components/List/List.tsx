@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 import { Droppable } from "react-beautiful-dnd";
-import { BEM } from "../../../../functions/helpers";
+import { BEM } from "../../../../includes/helpers";
 import Badge from "../../../Badge/Badge";
 import Task, { TaskType } from "../Task/Task";
 import styles from "./List.module.css";

@@ -1,41 +1,55 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useState } from "react";
 import Button from "../../components/Button/Button";
-import Field from "../../components/Form/components/Field/Field";
 import Form from "../../components/Form/Form";
 import Input from "../../components/Form/components/Input/Input";
 import styles from "./Login.module.css";
 import { Link, useNavigate } from "react-router-dom";
+import api from "../../includes/api";
 
 interface LoginProps {}
 
 const Login: FunctionComponent<LoginProps> = () => {
   const navigate = useNavigate();
+  const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const onSubmit = (data: { [key: string]: any }) => {
-    console.log(data);
-    navigate("/projects");
+  const onSubmit = async (formData: { [key: string]: any }) => {
+    setIsSubmitting(true);
+    await api.get("/sanctum/csrf-cookie");
+
+    api
+      .post("/api/session", formData)
+      .then(() => {
+        navigate("/");
+      })
+      .catch(({ response }) => {
+        if (response.status === 422) {
+          console.error("422 (Unprocessable Content)", response.data.errors);
+          setErrors(response.data.errors);
+        }
+
+        if (response.status === 403) {
+          console.error("403 (Forbidden)", response.data);
+        }
+
+        setIsSubmitting(false);
+      });
   };
 
   return (
     <div className={styles.Card}>
-      <Form onSubmit={onSubmit}>
-        <Field label="Email">
-          <Input name="email" type="email" required />
-        </Field>
-
-        <Field label="Password">
-          <Input name="password" type="password" required />
-        </Field>
+      <Form onSubmit={onSubmit} disabled={isSubmitting} errors={errors}>
+        <Input label="Email" name="email" type="email" />
+        <Input label="Password" name="password" type="password" />
 
         <Button className={styles.Button} type="submit">
           Login
         </Button>
       </Form>
-      <br />
-      <small>
+      <div className={styles.Subtext}>
         Don't have an account? <br />
         Register <Link to="/register">here</Link>.
-      </small>
+      </div>
     </div>
   );
 };

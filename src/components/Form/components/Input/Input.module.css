@@ -1,3 +1,18 @@
+.Wrapper {
+  margin-bottom: 1.5rem;
+}
+
+.Label {
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.Error {
+  color: var(--error-1);
+  font-size: 0.85em;
+  margin-top: 0.3rem;
+}
+
 .Input {
   background-color: transparent;
   border: 2px solid var(--dark-4);
@@ -15,4 +30,8 @@
 
 .Input:disabled {
   opacity: 0.25;
+}
+
+.Wrapper--hasError .Input {
+  border-color: var(--error-1);
 }
