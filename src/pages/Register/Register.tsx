@@ -54,8 +54,8 @@ const Register: FunctionComponent<RegisterProps> = () => {
         </Button>
       </Form>
       <div className={styles.Subtext}>
-        Don't have an account? <br />
-        Register <Link to="/register">here</Link>.
+        Already have an account? <br />
+        Login <Link to="/login">here</Link>.
       </div>
     </div>
   );
