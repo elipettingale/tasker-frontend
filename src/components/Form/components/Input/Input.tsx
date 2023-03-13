@@ -1,6 +1,6 @@
 import { FunctionComponent, HTMLProps, ReactNode, useContext } from "react";
 import { BEM } from "../../../../includes/helpers";
-import { FormContext } from "../../Form";
+import useFormErrors from "../../hooks/useFormErrors";
 import styles from "./Input.module.css";
 
 interface InputProps {
@@ -9,9 +9,7 @@ interface InputProps {
 }
 
 const Input: FunctionComponent<InputProps> = ({ name, label, ...rest }) => {
-  const formErrors = useContext<{ [key: string]: string[] }>(FormContext);
-  const hasError = formErrors.hasOwnProperty(name);
-  const fieldErrors = formErrors[name] ?? [];
+  const [hasError, errorMessage] = useFormErrors(name);
 
   return (
     <div
@@ -23,9 +21,7 @@ const Input: FunctionComponent<InputProps> = ({ name, label, ...rest }) => {
         {label ? <span className={styles.Label}>{label}</span> : null}
         <input className={styles.Input} name={name} {...rest} />
       </label>
-      {fieldErrors.length > 0 ? (
-        <div className={styles.Error}>{fieldErrors[0]}</div>
-      ) : null}
+      {hasError ? <div className={styles.Error}>{errorMessage}</div> : null}
     </div>
   );
 };
