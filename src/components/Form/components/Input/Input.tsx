@@ -3,7 +3,7 @@ import { BEM } from "../../../../includes/helpers";
 import useFormErrors from "../../hooks/useFormErrors";
 import styles from "./Input.module.css";
 
-interface InputProps {
+interface InputProps extends HTMLProps<HTMLInputElement> {
   label?: string;
   name: string;
 }
