@@ -1,0 +1,51 @@
+.Wrapper {
+  margin-bottom: 1rem;
+}
+
+.Repeater {
+  margin-bottom: 1rem;
+}
+
+.Label {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.Item {
+  background-color: transparent;
+  border: 2px solid var(--dark-4);
+  padding: 1em;
+  border-radius: 0.5em;
+  color: var(--light-1);
+  font-size: 1em;
+  position: relative;
+}
+
+.Item__Wrapper {
+  margin-bottom: 1rem;
+}
+
+.AddItem {
+  border: 2px solid var(--dark-4);
+  border-radius: 0.5em;
+  padding: 1em;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
+
+.AddItem:hover {
+  background-color: var(--dark-3);
+}
+
+.RemoveItem {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.RemoveItem:hover {
+  color: var(--error-1);
+}
