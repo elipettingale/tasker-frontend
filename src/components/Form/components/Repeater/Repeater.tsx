@@ -84,11 +84,13 @@ const Repeater: FunctionComponent<RepeaterProps> = ({
                           >
                             <Icon name="trash" />
                           </div>
-                          {Children.map(children, (child) => {
-                            return cloneElement(child, {
-                              name: `${name}[${item}][${child.props.name}]`,
-                            });
-                          })}
+                          <div className={styles.Item__Children}>
+                            {Children.map(children, (child) => {
+                              return cloneElement(child, {
+                                name: `${name}[${item}][${child.props.name}]`,
+                              });
+                            })}
+                          </div>
                         </div>
                       </div>
                     )}

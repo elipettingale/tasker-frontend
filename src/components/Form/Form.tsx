@@ -7,7 +7,7 @@ import {
 import styles from "./Form.module.css";
 
 interface FormProps {
-  onSubmit: (data: {}) => void;
+  onSubmit: (data: FormData) => void;
   errors: {};
   className?: string;
   disabled?: boolean;
@@ -25,8 +25,7 @@ const Form: FunctionComponent<FormProps> = ({
 }) => {
   const handleOnSubmit = (event: SyntheticEvent) => {
     event.preventDefault();
-    const formData = getFormData(event.target as HTMLFormElement);
-    onSubmit(formData);
+    onSubmit(new FormData(event.target as HTMLFormElement));
   };
 
   return (
@@ -37,15 +36,5 @@ const Form: FunctionComponent<FormProps> = ({
     </form>
   );
 };
-
-function getFormData(form: HTMLFormElement) {
-  let data: { [key: string]: FormDataEntryValue } = {};
-
-  for (var [key, value] of new FormData(form).entries()) {
-    data[key] = value;
-  }
-
-  return data;
-}
 
 export default Form;

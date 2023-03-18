@@ -13,7 +13,7 @@ const Register: FunctionComponent<RegisterProps> = () => {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const onSubmit = async (formData: { [key: string]: any }) => {
+  const onSubmit = async (formData: FormData) => {
     setIsSubmitting(true);
     await api.get("/sanctum/csrf-cookie");
 
