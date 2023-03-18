@@ -9,6 +9,7 @@ import {
 import styles from "./Kanban.module.css";
 import { clone } from "../../includes/helpers";
 import Icon from "../Icon/Icon";
+import Toolbar from "../Toolbar/Toolbar";
 
 interface KanbanProps {}
 
@@ -114,11 +115,6 @@ const Kanban: FunctionComponent<KanbanProps> = () => {
 
   return (
     <div>
-      <div className={styles.Toolbar}>
-        <Button>
-          New Task <Icon name="plus" />
-        </Button>
-      </div>
       <div className={styles.Lists}>
         <DragDropContext onDragEnd={onDragEnd}>
           <List list={lists["1"]} />

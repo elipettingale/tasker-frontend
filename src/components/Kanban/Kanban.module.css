@@ -1,13 +1,3 @@
-.Toolbar {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 3rem;
-}
-
-.Toolbar > * {
-  margin-left: 1rem;
-}
-
 .Lists {
   display: flex;
   gap: 1.5rem;
