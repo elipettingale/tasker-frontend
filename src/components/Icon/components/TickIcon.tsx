@@ -1,26 +1,20 @@
 import { FunctionComponent } from "react";
 import { SvgProps } from "../Icon";
 
-const PlusIcon: FunctionComponent<SvgProps> = ({ className, color }) => {
+const Tick: FunctionComponent<SvgProps> = ({ className, color }) => {
   return (
     <svg
       className={className}
       width="1.25em"
       height="1.25em"
       viewBox="0 0 24 24"
+      fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M5 12H19"
+        d="M4.89163 13.2687L9.16582 17.5427L18.7085 8"
         stroke={color}
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M12 5L12 19"
-        stroke={color}
-        strokeWidth="2"
+        strokeWidth="2.5"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
@@ -28,4 +22,4 @@ const PlusIcon: FunctionComponent<SvgProps> = ({ className, color }) => {
   );
 };
 
-export default PlusIcon;
+export default Tick;

@@ -1,13 +1,16 @@
 import { FunctionComponent } from "react";
 import { SvgProps } from "../Icon";
 
-const ChevronRightIcon: FunctionComponent<SvgProps> = ({ color }) => {
+const ChevronRightIcon: FunctionComponent<SvgProps> = ({
+  className,
+  color,
+}) => {
   return (
     <svg
+      className={className}
       width="1.25em"
       height="1.25em"
       viewBox="0 0 24 24"
-      fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
