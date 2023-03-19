@@ -1,23 +1,21 @@
 import { FunctionComponent } from "react";
 import { Droppable } from "react-beautiful-dnd";
 import { BEM } from "../../../../includes/helpers";
+import { ListType, TaskType } from "../../../../includes/types";
 import Badge from "../../../Badge/Badge";
-import Task, { TaskType } from "../Task/Task";
+import Task from "../Task/Task";
 import styles from "./List.module.css";
 
 interface ListProps {
+  id: string;
   list: ListType;
+  tasks: string[];
 }
 
-export type ListType = {
-  id: string;
-  name: string;
-  color: `#${string}`;
-  tasks: TaskType[];
-};
-
 const List: FunctionComponent<ListProps> = ({
-  list: { id, name, color, tasks },
+  id,
+  list: { name, color },
+  tasks,
 }) => {
   return (
     <div>
@@ -39,8 +37,8 @@ const List: FunctionComponent<ListProps> = ({
                 isDraggingOver: snapshot.isDraggingOver,
               })}
             >
-              {tasks.map((task, index) => (
-                <Task key={task.id} index={index} task={task} />
+              {tasks.map((id, index) => (
+                <Task key={id} id={id} index={index} />
               ))}
               {provided.placeholder}
             </div>

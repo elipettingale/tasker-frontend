@@ -1,20 +1,26 @@
-import { Dispatch, FunctionComponent, SetStateAction, useState } from "react";
-import Button from "../Button/Button";
-import Input from "../Form/components/Input/Input";
-import Form from "../Form/Form";
-import Icon from "../Icon/Icon";
-import styles from "./NewProjectForm.module.css";
-import api from "../../includes/api";
-import { useOnKeyUp } from "../../hooks/useOnKeyUp";
-import Repeater from "../Form/components/Repeater/Repeater";
+import {
+  Dispatch,
+  FunctionComponent,
+  SetStateAction,
+  useState,
+  MouseEvent,
+} from "react";
+import Button from "../../../../components/Button/Button";
+import Input from "../../../../components/Form/components/Input/Input";
+import Form from "../../../../components/Form/Form";
+import Icon from "../../../../components/Icon/Icon";
+import styles from "./CreateForm.module.css";
+import api from "../../../../includes/api";
+import { useOnKeyUp } from "../../../../hooks/useOnKeyUp";
+import Repeater from "../../../../components/Form/components/Repeater/Repeater";
 
-interface NewProjectFormProps {
+interface CreateFormProps {
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
   onSaved: (data: {}) => void;
 }
 
-const NewProjectForm: FunctionComponent<NewProjectFormProps> = ({
+const CreateForm: FunctionComponent<CreateFormProps> = ({
   isOpen,
   setIsOpen,
   onSaved,
@@ -49,15 +55,20 @@ const NewProjectForm: FunctionComponent<NewProjectFormProps> = ({
       });
   };
 
+  const handleWrapperOnClick = (event: MouseEvent) => {
+    if (event.target !== event.currentTarget) return;
+    setIsOpen(false);
+  };
+
   return (
-    <div className={styles.Wrapper}>
+    <div className={styles.Wrapper} onClick={handleWrapperOnClick}>
       <div className={styles.Inner}>
         <Form onSubmit={onSubmit} disabled={isSubmitting} errors={errors}>
           <Input label="Name" name="name" />
 
           <Repeater label="Lists" name="lists">
             <Input label="Name" name="name" />
-            <Input label="Color" name="color" />
+            <Input label="Color" name="color" type="color" />
           </Repeater>
 
           <Button type="submit">
@@ -69,4 +80,4 @@ const NewProjectForm: FunctionComponent<NewProjectFormProps> = ({
   );
 };
 
-export default NewProjectForm;
+export default CreateForm;

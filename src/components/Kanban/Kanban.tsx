@@ -1,6 +1,5 @@
 import { FunctionComponent, useState } from "react";
-import Button from "../Button/Button";
-import List, { ListType } from "./components/List/List";
+import List from "./components/List/List";
 import {
   DragDropContext,
   DraggableLocation,
@@ -8,98 +7,44 @@ import {
 } from "react-beautiful-dnd";
 import styles from "./Kanban.module.css";
 import { clone } from "../../includes/helpers";
-import Icon from "../Icon/Icon";
-import Toolbar from "../Toolbar/Toolbar";
+import { ListsType, ListTasksType } from "../../includes/types";
 
-interface KanbanProps {}
+interface KanbanProps {
+  lists: ListsType;
+  listTasks: ListTasksType;
+  setListTasks: (listTasks: ListTasksType) => void;
+}
 
-type ListsType = {
-  [key: string]: ListType;
-};
-
-const initial: ListsType = {
-  "1": {
-    id: "1",
-    name: "Todo",
-    color: "#f39b13",
-    tasks: [
-      {
-        id: "1",
-        title: "Lorem ipsum dolor",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-        tags: ["One", "Two"],
-      },
-      {
-        id: "2",
-        title: "Sed do eiusmod",
-        description:
-          "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-        tags: ["Two"],
-      },
-    ],
-  },
-  "2": { id: "2", name: "In Progress", color: "#735bc7", tasks: [] },
-  "3": {
-    id: "3",
-    name: "Testing",
-    color: "#d04a4a",
-    tasks: [
-      {
-        id: "3",
-        title: "Ut enim ad",
-        description:
-          "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris",
-        tags: ["Three"],
-      },
-    ],
-  },
-  "4": {
-    id: "4",
-    name: "Done",
-    color: "#59c78f",
-    tasks: [
-      {
-        id: "4",
-        title: "Nisi ut aliquip",
-        description: "Nisi ut aliquip ex ea commodo consequat",
-        tags: [],
-      },
-    ],
-  },
-};
-
-const Kanban: FunctionComponent<KanbanProps> = () => {
-  const [lists, setLists] = useState(initial);
-
+const Kanban: FunctionComponent<KanbanProps> = ({
+  lists,
+  listTasks,
+  setListTasks,
+}) => {
   const moveWithinList = (
     source: DraggableLocation,
     destination: DraggableLocation
   ) => {
-    let listClone = clone(lists[source.droppableId]);
-    const [removedItem] = listClone.tasks.splice(source.index, 1);
-    listClone.tasks.splice(destination.index, 0, removedItem);
+    let listClone = [...listTasks[source.droppableId]];
+    const [removedItem] = listClone.splice(source.index, 1);
+    listClone.splice(destination.index, 0, removedItem);
 
-    setLists((previous) => {
-      return { ...previous, [source.droppableId]: listClone };
-    });
+    setListTasks({ ...listTasks, [source.droppableId]: listClone });
   };
 
   const moveToAnotherList = (
     source: DraggableLocation,
     destination: DraggableLocation
   ) => {
-    const sourceListClone = clone(lists[source.droppableId]);
-    const destinationListClone = clone(lists[destination.droppableId]);
+    const sourceListClone = [...listTasks[source.droppableId]];
+    const destinationListClone = [...listTasks[destination.droppableId]];
 
-    const [removedItem] = sourceListClone.tasks.splice(source.index, 1);
-    destinationListClone.tasks.splice(destination.index, 0, removedItem);
+    const [removedItem] = sourceListClone.splice(source.index, 1);
+    destinationListClone.splice(destination.index, 0, removedItem);
 
-    setLists((previous) => {
-      return {
-        ...previous,
-        [source.droppableId]: sourceListClone,
-        [destination.droppableId]: destinationListClone,
-      };
+    setListTasks({
+      ...listTasks,
+      [source.droppableId]: sourceListClone,
+      [destination.droppableId]: destinationListClone,
     });
   };
 
@@ -117,10 +62,16 @@ const Kanban: FunctionComponent<KanbanProps> = () => {
     <div>
       <div className={styles.Lists}>
         <DragDropContext onDragEnd={onDragEnd}>
-          <List list={lists["1"]} />
-          <List list={lists["2"]} />
-          <List list={lists["3"]} />
-          <List list={lists["4"]} />
+          {Object.entries(lists).map(([_id, list]) => {
+            return (
+              <List
+                key={_id}
+                id={_id}
+                list={list}
+                tasks={listTasks[_id] ?? []}
+              />
+            );
+          })}
         </DragDropContext>
       </div>
     </div>

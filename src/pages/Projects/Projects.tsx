@@ -3,10 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import Button from "../../components/Button/Button";
 import Icon from "../../components/Icon/Icon";
-import NewProjectForm from "../../components/NewProjectForm/NewProjectForm";
 import Toolbar from "../../components/Toolbar/Toolbar";
 import styles from "./Projects.module.css";
 import api from "../../includes/api";
+import CreateForm from "./components/CreateForm/CreateForm";
 
 interface ProjectsProps {}
 
@@ -54,7 +54,7 @@ const Projects: FunctionComponent<ProjectsProps> = () => {
             </div>
           ))}
         </div>
-        <NewProjectForm
+        <CreateForm
           isOpen={formIsOpen}
           setIsOpen={setFormIsOpen}
           onSaved={handleOnSaved}

@@ -23,6 +23,20 @@
   font-size: 1em;
 }
 
+.Input[type="color"] {
+  padding: 0;
+  height: 54px;
+  overflow: hidden;
+}
+
+.Input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.Input[type="color"]::-webkit-color-swatch {
+  border: none;
+}
+
 .Input:focus {
   outline: none;
   border-color: var(--primary-1);

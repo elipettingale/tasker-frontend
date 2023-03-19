@@ -1,25 +1,16 @@
 import { FunctionComponent } from "react";
 import { Draggable } from "react-beautiful-dnd";
 import { BEM } from "../../../../includes/helpers";
+import { TaskType } from "../../../../includes/types";
 import Badge from "../../../Badge/Badge";
 import styles from "./Task.module.css";
 
 interface TaskProps {
   index: number;
-  task: TaskType;
+  id: string;
 }
 
-export type TaskType = {
-  id: string;
-  title: string;
-  description: string;
-  tags: string[];
-};
-
-const Task: FunctionComponent<TaskProps> = ({
-  index,
-  task: { id, title, description, tags },
-}) => {
+const Task: FunctionComponent<TaskProps> = ({ index, id }) => {
   return (
     <Draggable key={id} draggableId={id} index={index}>
       {(provided, snapshot) => (
@@ -33,20 +24,28 @@ const Task: FunctionComponent<TaskProps> = ({
             {...provided.dragHandleProps}
             style={provided.draggableProps.style}
           >
-            {tags.length > 0 ? (
-              <div className={styles.Badges}>
-                {tags.map((tag) => (
-                  <Badge key={tag}>{tag}</Badge>
-                ))}
-              </div>
-            ) : null}
-            <h3 className={styles.Title}>{title}</h3>
-            <p className={styles.Description}>{description}</p>
+            {id}
           </div>
         </div>
       )}
     </Draggable>
   );
 };
+
+function renderTask(tags, title, description) {
+  return (
+    <>
+      {tags.length > 0 ? (
+        <div className={styles.Badges}>
+          {tags.map((tag) => (
+            <Badge key={tag}>{tag}</Badge>
+          ))}
+        </div>
+      ) : null}
+      <h3 className={styles.Title}>{title}</h3>
+      <p className={styles.Description}>{description}</p>
+    </>
+  );
+}
 
 export default Task;
