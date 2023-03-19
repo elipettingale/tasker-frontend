@@ -26,11 +26,11 @@ const Project: FunctionComponent<ProjectProps> = () => {
   }
 
   const setTasks = (tasks: TasksType) => {
-    let newData = { ...project, tasks: tasks };
+    setProject((previous) => {
+      return { ...previous, tasks: tasks };
+    });
 
-    setProject(newData);
-
-    api.put(`/api/projects/${id}`, newData).catch((response) => {
+    api.patch(`/api/projects/${id}`, { tasks: tasks }).catch((response) => {
       // todo: handle error
     });
   };
