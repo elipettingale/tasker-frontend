@@ -6,45 +6,40 @@ import {
   DropResult,
 } from "react-beautiful-dnd";
 import styles from "./Kanban.module.css";
-import { clone } from "../../includes/helpers";
-import { ListsType, ListTasksType } from "../../includes/types";
+import { ListsType, TasksType } from "../../includes/types";
 
 interface KanbanProps {
   lists: ListsType;
-  listTasks: ListTasksType;
-  setListTasks: (listTasks: ListTasksType) => void;
+  tasks: TasksType;
+  setTasks: (tasks: TasksType) => void;
 }
 
-const Kanban: FunctionComponent<KanbanProps> = ({
-  lists,
-  listTasks,
-  setListTasks,
-}) => {
+const Kanban: FunctionComponent<KanbanProps> = ({ lists, tasks, setTasks }) => {
   const moveWithinList = (
     source: DraggableLocation,
     destination: DraggableLocation
   ) => {
-    let listClone = [...listTasks[source.droppableId]];
-    const [removedItem] = listClone.splice(source.index, 1);
-    listClone.splice(destination.index, 0, removedItem);
+    let clone = [...tasks[source.droppableId]];
+    const [removedItem] = clone.splice(source.index, 1);
+    clone.splice(destination.index, 0, removedItem);
 
-    setListTasks({ ...listTasks, [source.droppableId]: listClone });
+    setTasks({ ...tasks, [source.droppableId]: clone });
   };
 
   const moveToAnotherList = (
     source: DraggableLocation,
     destination: DraggableLocation
   ) => {
-    const sourceListClone = [...listTasks[source.droppableId]];
-    const destinationListClone = [...listTasks[destination.droppableId]];
+    const sourceClone = [...tasks[source.droppableId]];
+    const destinationClone = [...tasks[destination.droppableId]];
 
-    const [removedItem] = sourceListClone.splice(source.index, 1);
-    destinationListClone.splice(destination.index, 0, removedItem);
+    const [removedItem] = sourceClone.splice(source.index, 1);
+    destinationClone.splice(destination.index, 0, removedItem);
 
-    setListTasks({
-      ...listTasks,
-      [source.droppableId]: sourceListClone,
-      [destination.droppableId]: destinationListClone,
+    setTasks({
+      ...tasks,
+      [source.droppableId]: sourceClone,
+      [destination.droppableId]: destinationClone,
     });
   };
 
@@ -64,12 +59,7 @@ const Kanban: FunctionComponent<KanbanProps> = ({
         <DragDropContext onDragEnd={onDragEnd}>
           {Object.entries(lists).map(([_id, list]) => {
             return (
-              <List
-                key={_id}
-                id={_id}
-                list={list}
-                tasks={listTasks[_id] ?? []}
-              />
+              <List key={_id} id={_id} list={list} tasks={tasks[_id] ?? []} />
             );
           })}
         </DragDropContext>

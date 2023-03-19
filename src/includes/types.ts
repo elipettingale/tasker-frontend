@@ -2,11 +2,7 @@ export type ProjectType = {
   _id: string;
   name: string;
   lists: ListsType;
-  listTasks: ListTasksType;
-};
-
-export type ListTasksType = {
-  [key: string]: string[];
+  tasks: TasksType;
 };
 
 export type ListsType = {
@@ -18,9 +14,12 @@ export type ListType = {
   color: `#${string}`;
 };
 
+export type TasksType = {
+  [key: string]: TaskType[];
+};
+
 export type TaskType = {
   id: string;
   title: string;
   description: string;
-  tags: string[];
 };

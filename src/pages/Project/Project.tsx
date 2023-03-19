@@ -7,7 +7,7 @@ import Toolbar from "../../components/Toolbar/Toolbar";
 import Button from "../../components/Button/Button";
 import Icon from "../../components/Icon/Icon";
 import api from "../../includes/api";
-import { ListTasksType, ProjectType } from "../../includes/types";
+import { ProjectType, TasksType } from "../../includes/types";
 
 interface ProjectProps {}
 
@@ -25,8 +25,8 @@ const Project: FunctionComponent<ProjectProps> = () => {
     return null;
   }
 
-  const setListTasks = (listTasks: ListTasksType) => {
-    let newData = { ...project, listTasks: listTasks };
+  const setTasks = (tasks: TasksType) => {
+    let newData = { ...project, tasks: tasks };
 
     setProject(newData);
 
@@ -55,8 +55,8 @@ const Project: FunctionComponent<ProjectProps> = () => {
         </Toolbar>
         <Kanban
           lists={project.lists}
-          listTasks={project.listTasks}
-          setListTasks={setListTasks}
+          tasks={project.tasks}
+          setTasks={setTasks}
         />
       </div>
     </div>
